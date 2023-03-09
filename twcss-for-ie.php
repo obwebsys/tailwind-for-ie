@@ -14,7 +14,8 @@ define( 'MY_PLUGIN_URL', plugins_url( '/', __FILE__ ) );
 add_action('wp_enqueue_scripts', function() {
     // if IE, load css
     $browser = strtolower($_SERVER['HTTP_USER_AGENT']);
-    if (strstr($browser,'trident') || strstr($browser,'msie')) {
+    if (!is_user_logged_in()) {
+    // if (strstr($browser,'trident') || strstr($browser,'msie')) {
         wp_enqueue_style('style_tw_ie', MY_PLUGIN_URL.'style_tw_ie.css', '', MY_PLUGIN_VERSION);
     }
 }, 11);
